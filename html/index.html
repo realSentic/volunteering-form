@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GERARSYKEN ROXAS PROVINCIAL COMMUNITY Volunteer Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="../js/data.js" defer></script>
+  <script src="../js/custom.js" defer></script>
+  <script src="../js/background.js" defer></script>
+</head>
+
+<body class="font-poppins text-[#F9E7B2]">
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
+    <div class="text-[#F9E7B2] text-xl flex flex-col items-center">
+      <i class="fa-solid fa-spinner fa-spin text-4xl mb-4"></i>
+      <p>Submitting your form...</p>
+    </div>
+  </div>
+
+  <!-- Background Canvas -->
+  <canvas id="bgCanvas"></canvas>
+
+  <!-- Form Container -->
+  <div class="w-11/12 sm:w-10/12 lg:max-w-3xl mx-auto p-4 sm:p-8 rounded-2xl shadow-2xl border-2 border-[#D34E4E] bg-[#1F1F1F] my-10 transform hover:scale-[1.005] transition-transform duration-300">
+
+    <h1 class="text-3xl sm:text-5xl font-extrabold text-center mb-4 text-[#D34E4E] tracking-wider">
+      <i class="fa-solid fa-hand-holding-heart"></i> GERARSYKEN COMMUNITY
+    </h1>
+    <p class="text-center mb-8 text-sm sm:text-lg text-[#F9E7B2]/80">
+      Official Volunteer Registration Form for Roxas Province
+    </p>
+
+    <form id="volunteerForm" class="flex flex-col gap-6">
+      <!-- Full Name -->
+      <div class="form-control">
+        <label class="label">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-user"></i>
+            <p>Full Name</p>
+          </div>
+        </label>
+        <input id="name" type="text" placeholder="Juan Dela Cruz"
+          class="input input-bordered bg-[#1F1F1F] text-[#F9E7B2] placeholder-[#F9E7B2]/50 focus:border-[#D34E4E] focus:ring-[#D34E4E]/50"
+          required>
+      </div>
+
+      <!-- Email -->
+      <div class="form-control">
+        <label class="label">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-envelope"></i>
+            <p>Email Address</p>
+          </div>
+        </label>
+        <input id="email" type="email" placeholder="juan@example.com"
+          class="input input-bordered bg-[#1F1F1F] text-[#F9E7B2] placeholder-[#F9E7B2]/50 focus:border-[#D34E4E] focus:ring-[#D34E4E]/50"
+          required>
+      </div>
+
+      <!-- Phone -->
+      <div class="form-control">
+        <label class="label">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-phone"></i>
+            <p>Phone Number</p>
+          </div>
+        </label>
+        <input id="phone" type="tel" placeholder="09xxxxxxxxx" pattern="[0-9]{11}"
+          class="input input-bordered bg-[#1F1F1F] text-[#F9E7B2] placeholder-[#F9E7B2]/50 focus:border-[#D34E4E] focus:ring-[#D34E4E]/50"
+          required>
+      </div>
+
+      <!-- Area of Interest -->
+      <div class="form-control">
+        <label class="label">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-compass"></i>
+            <p>Area of Interest</p>
+          </div>
+        </label>
+        <select id="area"
+          class="select select-bordered bg-[#1F1F1F] text-[#F9E7B2] focus:border-[#D34E4E] focus:ring-[#D34E4E]/50"
+          required>
+          <option value="" disabled selected>-- Select an area of focus --</option>
+          <option>Philippine Red Cross</option>
+          <option>Tutoring Volunteer</option>
+          <option>Philippine Animal Welfare Society</option>
+          <option>Tree-Planting</option>
+          <option>Cleanup-Drive</option>
+          <option>Disaster Relief Operations</option>
+          <option>Community Event Planning</option>
+        </select>
+      </div>
+
+      <!-- Reason -->
+      <div class="form-control">
+        <label class="label">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-circle-question"></i>
+            <p>Why do you want to volunteer?</p>
+          </div>
+        </label>
+        <textarea id="reason" placeholder="Your answer... (Min 50 characters)" minlength="50"
+          class="textarea textarea-bordered bg-[#1F1F1F] text-[#F9E7B2] placeholder-[#F9E7B2]/50 h-32 focus:border-[#D34E4E] focus:ring-[#D34E4E]/50"
+          required></textarea>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn btn-lg mt-6 shadow-xl hover:shadow-2xl hover:scale-[1.02] hover:bg-[#D34E4E] transition-all duration-300 bg-[#D34E4E] text-[#1F1F1F] font-bold border-none">
+        <div class="flex items-center gap-5">
+          <i class="fa-solid fa-paper-plane"></i>
+          <p>Submit Registration</p>
+        </div>
+      </button>
+    </form>
+  </div>
+
+</body>
+</html>
