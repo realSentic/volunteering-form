@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Log</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+  <style>
+    /* Fade transitions */
+    #pageLoader, #submitLoader {
+      transition: opacity 0.5s ease;
+    }
+    #mainContent {
+      transition: opacity 0.5s ease;
+    }
+    #submitLoader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #submitLoader:not(.hidden) {
+      opacity: 1;
+    }
+  </style>
+  <script src="js/time.js" defer></script>
+</head>
+<body class="bg-[#1F1F1F] text-[#F9E7B2] font-poppins h-screen flex items-center justify-center relative overflow-hidden">
+
+  <!-- Page Load Spinner -->
+  <div id="pageLoader" class="absolute inset-0 bg-[#1F1F1F] flex flex-col items-center justify-center z-50 opacity-100">
+    <i class="fa-solid fa-spinner fa-spin text-6xl text-[#D34E4E] mb-4"></i>
+    <p class="text-xl text-[#F9E7B2]/80">Loading...</p>
+  </div>
+
+  <!-- Form Submission Spinner Overlay -->
+  <div id="submitLoader" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
+    <div class="text-[#F9E7B2] text-xl flex flex-col items-center">
+      <i class="fa-solid fa-spinner fa-spin text-5xl mb-4"></i>
+      <p>Submitting...</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div id="mainContent" class="text-center p-10 bg-[#2A2A2A] rounded-2xl shadow-xl border-2 border-[#D34E4E] w-11/12 sm:w-96 opacity-0">
+    <i class="fa-solid fa-clock text-6xl text-[#D34E4E] mb-4"></i>
+    <h1 class="text-3xl font-bold mb-4">Log Your Time</h1>
+    
+    <form id="timeForm" class="flex flex-col gap-4">
+      <input 
+        type="text" 
+        id="name" 
+        name="name" 
+        placeholder="Enter your name" 
+        class="input input-bordered w-full bg-[#1F1F1F] text-[#F9E7B2] border-[#D34E4E]" 
+        required
+      />
+      <select 
+        id="type" 
+        class="select select-bordered w-full bg-[#1F1F1F] text-[#F9E7B2] border-[#D34E4E]" 
+        required
+      >
+        <option value="in">Time In</option>
+        <option value="out">Time Out</option>
+      </select>
+      <button 
+        type="submit" 
+        class="btn bg-[#D34E4E] hover:bg-[#B63D3D] text-[#1F1F1F] border-none"
+      >
+        Submit
+      </button>
+    </form>
+
+    <p id="message" class="mt-4 text-[#F9E7B2]/80"></p>
+  </div>
+
+  <script>
+    // Page-load fade
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('pageLoader');
+      const mainContent = document.getElementById('mainContent');
+
+      setTimeout(() => {
+        loader.style.opacity = '0';
+        setTimeout(() => {
+          loader.style.display = 'none';
+          mainContent.style.opacity = '1';
+        }, 500);
+      }, 500);
+    });
+  </script>
+
+</body>
+</html>
