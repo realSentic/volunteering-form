@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
       reason: document.querySelector('#reason').value
     };
 
-    fetch('https://senticstrange.app.n8n.cloud/webhook/volunteer-form', {
+    fetch('https://syiamfortunado.app.n8n.cloud/webhook/volunteer-form', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
