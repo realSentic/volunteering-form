@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       // send to n8n webhook
-      await fetch("YOUR_N8N_WEBHOOK_URL", {
+      await fetch("https://syiamfortunado.app.n8n.cloud/webhook/volunteer-form", {
         method: "POST",
         body: JSON.stringify(formData),
         headers: { "Content-Type": "application/json" },
