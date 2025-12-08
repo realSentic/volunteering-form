@@ -18,7 +18,7 @@ form.addEventListener('submit', async (e) => {
   message.textContent = "";
 
   try {
-    const response = await fetch('https://senticstrange.app.n8n.cloud/webhook/time-in', {
+    const response = await fetch('https://syiamfortunado.app.n8n.cloud/webhook/time-in', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, type })
