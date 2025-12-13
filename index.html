@@ -17,7 +17,6 @@
 
 <body class="font-poppins text-[#F9E7B2]">
 
-  <!-- Loading Overlay -->
   <div id="loadingOverlay" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
     <div class="text-[#F9E7B2] text-xl flex flex-col items-center">
       <i class="fa-solid fa-spinner fa-spin text-4xl mb-4"></i>
@@ -25,10 +24,8 @@
     </div>
   </div>
 
-  <!-- Background Canvas -->
   <canvas id="bgCanvas"></canvas>
 
-  <!-- Form Container -->
   <div class="w-11/12 sm:w-10/12 lg:max-w-3xl mx-auto p-4 sm:p-8 rounded-2xl shadow-2xl border-2 border-[#D34E4E] bg-[#1F1F1F] my-10 transform hover:scale-[1.005] transition-transform duration-300">
 
     <h1 class="text-3xl sm:text-5xl font-extrabold text-center mb-4 text-[#D34E4E] tracking-wider">
@@ -39,7 +36,6 @@
     </p>
 
     <form id="volunteerForm" class="flex flex-col gap-6">
-      <!-- Full Name -->
       <div class="form-control">
         <label class="label">
           <div class="flex items-center gap-2">
@@ -52,7 +48,6 @@
           required>
       </div>
 
-      <!-- Email -->
       <div class="form-control">
         <label class="label">
           <div class="flex items-center gap-2">
@@ -65,7 +60,6 @@
           required>
       </div>
 
-      <!-- Phone -->
       <div class="form-control">
         <label class="label">
           <div class="flex items-center gap-2">
@@ -78,7 +72,6 @@
           required>
       </div>
 
-      <!-- Area of Interest -->
       <div class="form-control">
         <label class="label">
           <div class="flex items-center gap-2">
@@ -89,33 +82,10 @@
         <select id="area"
           class="select select-bordered bg-[#1F1F1F] text-[#F9E7B2] focus:border-[#D34E4E] focus:ring-[#D34E4E]/50"
           required>
-          <option value="" disabled selected>-- Select a job --</option>
-          <option>Tree Planting (1:00 PM – 3:30 PM)</option>
-          <option>Coastal Cleanup (7:00 AM – 10:00 AM)</option>
-          <option>Park Beautification (9:00 AM – 12:00 PM)</option>
-          <option>Recycling Drive Sorting (2:00 PM – 5:00 PM)</option>
-          <option>Soup Kitchen Meal Prep (8:00 AM – 11:00 AM)</option>
-          <option>Food Bag Packing (1:00 PM – 4:00 PM)</option>
-          <option>Community Pantry Assistance (9:00 AM – 12:00 PM)</option>
-          <option>Elderly Home Visit (3:00 PM – 5:00 PM)</option>
-          <option>After-School Tutoring (4:00 PM – 6:00 PM)</option>
-          <option>Reading Session for Kids (10:00 AM – 11:30 AM)</option>
-          <option>Art Workshop Helper (1:30 PM – 4:00 PM)</option>
-          <option>School Supplies Distribution (8:30 AM – 11:00 AM)</option>
-          <option>Animal Shelter Cleaning (9:00 AM – 12:00 PM)</option>
-          <option>Dog Walking (3:00 PM – 5:00 PM)</option>
-          <option>Pet Feeding Program (7:30 AM – 9:00 AM)</option>
-          <option>Blood Donation Registration Desk (8:00 AM – 12:00 PM)</option>
-          <option>Medical Mission Support (1:00 PM – 4:30 PM)</option>
-          <option>First-Aid Booth Volunteer (10:00 AM – 2:00 PM)</option>
-          <option>Registration Booth Staff (7:00 AM – 9:30 AM)</option>
-          <option>Stage Crew Assistance (2:00 PM – 6:00 PM)</option>
-          <option>Crowd Management (3:00 PM – 5:30 PM)</option>
-          <option>Clean-Up Crew (5:30 PM – 7:00 PM)</option>
+          <option value="" disabled selected>-- Loading available jobs... --</option>
         </select>
       </div>
 
-      <!-- Reason -->
       <div class="form-control">
         <label class="label">
           <div class="flex items-center gap-2">
@@ -128,7 +98,6 @@
           required></textarea>
       </div>
 
-      <!-- Submit -->
       <button type="submit" class="btn btn-lg mt-6 shadow-xl hover:shadow-2xl hover:scale-[1.02] hover:bg-[#D34E4E] transition-all duration-300 bg-[#D34E4E] text-[#1F1F1F] font-bold border-none">
         <div class="flex items-center gap-5">
           <i class="fa-solid fa-paper-plane"></i>
