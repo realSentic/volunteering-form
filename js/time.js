@@ -1,3 +1,13 @@
+// ====================================================================
+// ⚠️ IMPORTANT: UPDATE THIS BASE URL
+// Use the current HTTPS URL from your Cloudflare Tunnel terminal (without a trailing slash)
+// ====================================================================
+const CLOUDFLARE_TUNNEL_BASE = 'https://YOUR-CURRENT-TUNNEL-NAME.trycloudflare.com';
+
+// --- n8n Webhook Endpoint (Updated to use the HTTPS tunnel) ---
+const N8N_TIME_IN_URL = `${CLOUDFLARE_TUNNEL_BASE}/webhook/time-in`;
+
+
 const form = document.getElementById('timeForm');
 const message = document.getElementById('message');
 const submitLoader = document.getElementById('submitLoader');
@@ -18,7 +28,8 @@ form.addEventListener('submit', async (e) => {
   message.textContent = "";
 
   try {
-    const response = await fetch('http://localhost:5678/webhook/time-in', {
+    // Use the updated secure tunnel URL
+    const response = await fetch(N8N_TIME_IN_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, type })
@@ -29,11 +40,13 @@ form.addEventListener('submit', async (e) => {
       message.textContent = result.message || "✅ Time logged successfully!";
       form.reset();
     } else {
-      message.textContent = "❌ Error logging time. Please try again.";
+      // Log the specific status for debugging
+      console.error(`Webhook returned non-OK status: ${response.status}`);
+      message.textContent = "❌ Error logging time. Please try again. (Check n8n status)";
     }
   } catch (error) {
-    console.error(error);
-    message.textContent = "❌ Network error. Please try again.";
+    console.error("Network error during time logging:", error);
+    message.textContent = "❌ Network error. Please ensure the Cloudflare Tunnel is running.";
   } finally {
     // Hide the loader in all cases
     submitLoader.classList.add('hidden');
