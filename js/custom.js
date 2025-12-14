@@ -5,7 +5,7 @@
 import { 
     N8N_FETCH_JOBS_URL, 
     N8N_SUBMIT_FORM_URL 
-} from 'js/config.js'; // Note the .js extension is often required for vanilla ES Modules
+} from './config.js'; // Note the .js extension is often required for vanilla ES Modules
 
 // =================================================================
 // 1. Tailwind Configuration
