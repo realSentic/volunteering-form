@@ -1,4 +1,13 @@
 // =================================================================
+// 0. Import Configuration
+// =================================================================
+// Assuming this file is located in the same directory as config.js
+import { 
+    N8N_FETCH_JOBS_URL, 
+    N8N_SUBMIT_FORM_URL 
+} from 'js/config.js'; // Note the .js extension is often required for vanilla ES Modules
+
+// =================================================================
 // 1. Tailwind Configuration
 // (No changes here, keeping for completeness)
 // =================================================================
@@ -26,17 +35,8 @@ tailwind.config = {
 // =================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    // ====================================================================
-    // ⚠️ IMPORTANT: UPDATE THIS BASE URL
-    // Use the current HTTPS URL from your Cloudflare Tunnel terminal (without a trailing slash)
-    // ====================================================================
-    const CLOUDFLARE_TUNNEL_BASE = 'https://raleigh-packard-perry-sonic.trycloudflare.com';
-
     // --- Configuration ---
-    // URL to get the list of available jobs from n8n (GET request)
-    const N8N_FETCH_JOBS_URL = `${CLOUDFLARE_TUNNEL_BASE}/webhook/get-available-jobs`; // UPDATED
-    // URL to submit the volunteer form data to n8n (POST request)
-    const N8N_SUBMIT_FORM_URL = `${CLOUDFLARE_TUNNEL_BASE}/webhook/volunteer-form`; // UPDATED
+    // NO MORE HARDCODED URLS HERE! They are now imported constants.
     
     const DROPDOWN_ID = 'area';
     const POLLING_INTERVAL = 60000; // Check for updates every 60 seconds
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         dropdown.innerHTML = '<option value="" disabled selected>Fetching latest jobs...</option>';
 
         try {
-            // Fetch using the UPDATED HTTPS URL
+            // Fetch using the imported N8N_FETCH_JOBS_URL
             const response = await fetch(N8N_FETCH_JOBS_URL);
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            // Submit using the UPDATED HTTPS URL
+            // Submit using the imported N8N_SUBMIT_FORM_URL
             const response = await fetch(N8N_SUBMIT_FORM_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
