@@ -2,7 +2,7 @@
 // ⚠️ IMPORTANT: UPDATE THIS BASE URL
 // Use the current HTTPS URL from your Cloudflare Tunnel terminal (without a trailing slash)
 // ====================================================================
-const CLOUDFLARE_TUNNEL_BASE = 'https://raleigh-packard-perry-sonic.trycloudflare.com/';
+const CLOUDFLARE_TUNNEL_BASE = 'https://raleigh-packard-perry-sonic.trycloudflare.com';
 
 // --- n8n Webhook Endpoint (Updated to use the HTTPS tunnel) ---
 const N8N_TIME_IN_URL = `${CLOUDFLARE_TUNNEL_BASE}/webhook-test/time-in`;
