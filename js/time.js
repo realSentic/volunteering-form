@@ -3,7 +3,7 @@
 // ====================================================================
 import { 
     N8N_TIME_IN_URL // Assuming this constant is exported from config.js
-} from '/js/config.js'; // Use './config.js' if this script is in the same folder as config.js
+} from './config.js'; // Use './config.js' if this script is in the same folder as config.js
 
 // Removed the hardcoded CLOUDFLARE_TUNNEL_BASE and N8N_TIME_IN_URL constants here
 
