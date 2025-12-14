@@ -1,5 +1,6 @@
 // =================================================================
 // 1. Tailwind Configuration
+// (No changes here, keeping for completeness)
 // =================================================================
 tailwind.config = {
     theme: {
@@ -25,11 +26,17 @@ tailwind.config = {
 // =================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
+    // ====================================================================
+    // ⚠️ IMPORTANT: UPDATE THIS BASE URL
+    // Use the current HTTPS URL from your Cloudflare Tunnel terminal (without a trailing slash)
+    // ====================================================================
+    const CLOUDFLARE_TUNNEL_BASE = 'https://YOUR-CURRENT-TUNNEL-NAME.trycloudflare.com';
+
     // --- Configuration ---
     // URL to get the list of available jobs from n8n (GET request)
-    const N8N_FETCH_JOBS_URL = 'http://localhost:5678/webhook/get-available-jobs';
+    const N8N_FETCH_JOBS_URL = `${CLOUDFLARE_TUNNEL_BASE}/webhook/get-available-jobs`; // UPDATED
     // URL to submit the volunteer form data to n8n (POST request)
-    const N8N_SUBMIT_FORM_URL = 'http://localhost:5678/webhook/volunteer-form';
+    const N8N_SUBMIT_FORM_URL = `${CLOUDFLARE_TUNNEL_BASE}/webhook/volunteer-form`; // UPDATED
     
     const DROPDOWN_ID = 'area';
     const POLLING_INTERVAL = 60000; // Check for updates every 60 seconds
@@ -47,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         dropdown.innerHTML = '<option value="" disabled selected>Fetching latest jobs...</option>';
 
         try {
+            // Fetch using the UPDATED HTTPS URL
             const response = await fetch(N8N_FETCH_JOBS_URL);
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -55,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let data = await response.json();
             let jobsData = data;
             
-            // Unwrap data if necessary (n8n often returns an array containing a 'json' property)
+            // Unwrap data if necessary
             if (Array.isArray(jobsData) && jobsData.length > 0 && jobsData[0].json) {
                 jobsData = jobsData.map(item => item.json);
             }
@@ -88,11 +96,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.error('Error fetching jobs:', error);
-            dropdown.innerHTML = '<option value="" disabled selected>-- Error loading jobs --</option>';
+            // Provide a clear error to the user
+            dropdown.innerHTML = '<option value="" disabled selected>-- Error loading jobs (Check Tunnel) --</option>';
         }
     }
     
-    // Initial fetch and start polling (NO ERROR HERE NOW)
+    // Initial fetch and start polling
     fetchAndPopulateJobs();
     setInterval(fetchAndPopulateJobs, POLLING_INTERVAL);
 
@@ -124,6 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
+            // Submit using the UPDATED HTTPS URL
             const response = await fetch(N8N_SUBMIT_FORM_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -133,9 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
             loadingOverlay.classList.add('hidden'); // Hide loading screen
 
             if (!response.ok) {
-                // If the response is not 200 OK, it usually means the n8n webhook failed
-                // or was rejected (e.g., if you had an IF node that failed).
-                throw new Error('Server error or n8n failure. Status: ' + response.status);
+                // Throw an error if the HTTP status is not successful
+                throw new Error(`Server error or n8n failure. Status: ${response.status}`);
             }
 
             alert('🎉 Registration submitted successfully! We will be in touch shortly.');
@@ -147,7 +156,8 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (err) {
             loadingOverlay.classList.add('hidden'); // Hide loading screen
             console.error("Submission Error:", err);
-            alert('❌ Error submitting form. Please try again later.');
+            // Inform the user clearly what might be wrong
+            alert(`❌ Error submitting form. Check that the Cloudflare Tunnel is running. Details: ${err.message}`);
         }
     });
 });
