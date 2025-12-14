@@ -3,7 +3,7 @@
 // ====================================================================
 import { 
     N8N_SUBMIT_FORM_URL // Assuming this constant is exported from config.js
-} from './config.js'; // Use './config.js' if this script is in the same folder as config.js
+} from 'config.js'; // Use './config.js' if this script is in the same folder as config.js
 
 
 document.addEventListener('DOMContentLoaded', () => {
