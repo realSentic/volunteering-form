@@ -27,7 +27,7 @@ tailwind.config = {
 document.addEventListener('DOMContentLoaded', () => {
     // --- Configuration ---
     // URL to get the list of available jobs from n8n (GET request)
-    const N8N_FETCH_JOBS_URL = 'https://localhost:5678/webhook/get-available-jobs';
+    const N8N_FETCH_JOBS_URL = 'http://localhost:5678/webhook/get-available-jobs';
     // URL to submit the volunteer form data to n8n (POST request)
     const N8N_SUBMIT_FORM_URL = 'http://localhost:5678/webhook/volunteer-form';
     
