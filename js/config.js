@@ -4,7 +4,7 @@
 // ⚠️ THIS IS THE ONLY FILE YOU EVER NEED TO EDIT
 // Update this string with your current Cloudflare Quick Tunnel URL
 // ====================================================================
-export const CLOUDFLARE_TUNNEL_BASE = 'https://prerequisite-correctly-emacs-looking.trycloudflare.com/';
+export const CLOUDFLARE_TUNNEL_BASE = 'https://clarke-bolt-feels-architects.trycloudflare.com';
 
 // Export all the full endpoints needed across your application
 export const N8N_FETCH_JOBS_URL = `${CLOUDFLARE_TUNNEL_BASE}/webhook/get-available-jobs`;
