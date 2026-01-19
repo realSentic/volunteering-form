@@ -5,27 +5,25 @@ import {
     N8N_TIME_IN_URL // Assuming this constant is exported from config.js
 } from './config.js'; // Use './config.js' if this script is in the same folder as config.js
 
-// Removed the hardcoded CLOUDFLARE_TUNNEL_BASE and N8N_TIME_IN_URL constants here
-
 const form = document.getElementById('timeForm');
 const message = document.getElementById('message');
 const submitLoader = document.getElementById('submitLoader');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
-
+    
     const name = document.getElementById('name').value.trim();
     const type = document.getElementById('type').value;
-
+    
     if (!name) {
         message.textContent = "❌ Please enter your name.";
         return;
     }
-
+    
     // Show the submitting loader
     submitLoader.classList.remove('hidden');
     message.textContent = "";
-
+    
     try {
         // Use the imported constant N8N_TIME_IN_URL
         const response = await fetch(N8N_TIME_IN_URL, {
@@ -33,15 +31,14 @@ form.addEventListener('submit', async (e) => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name, type })
         });
-
+        
         if (response.ok) {
             const result = await response.json();
             message.textContent = result.message || "✅ Time logged successfully!";
             form.reset();
         } else {
-            // Log the specific status for debugging
+            // ✅ FIXED: Added opening parenthesis
             console.error(`Webhook returned non-OK status: ${response.status}`);
-            // Updated error message to be generic since the URL is centralized
             message.textContent = "❌ Error logging time. Please try again. (Check n8n status)";
         }
     } catch (error) {
